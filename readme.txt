@@ -1,0 +1,22 @@
+Build image locally:
+mvn clean package -DskipTests=true -P native -Dnet.bytebuddy.experimental=true
+
+Used to build linux executable:
+https://github.com/vegardit/docker-graalvm-maven
+
+May be important:
+--platform=linux/amd64
+
+Bench:
+wrk -t4 -c15 -d30s \
+ -H "Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOiIiLCJpc3MiOiJib3R5YW5vdnNreS5kZXYiLCJleHAiOjE2ODczODU5MTEsImlhdCI6MTY4NzM3MTUxMSwiZW1haWwiOiI3ZmFudGFzeTdAZ21haWwuY29tIiwidXNlcm5hbWUiOiJmYW50YXN5In0.OVhbKMDDM5-OYHGNpQ8Ddh6xsRFl1wUm9k7Ko1RKFTV2eaThKTtvhXk60xIk79nLO1znEkbph6H454k6xVO1eD6d2kJY6PROi2OIzyDS7aJ2dWBr3CSCwAc6BsDJL2ItnsAizVQJUFK_i9CocMJoph351dRS-vDiPwJfZDmzKxYV57koDVLejP240Vzb3lXAOfabcdpJxdr6QqMT8I6KA9GkZ9lIr1_vDHlrVIDNtORYxwS_RG-F7-kGWAiqmJ_BZCh-Tasf-oj0dTw0gckLcX1HD8pmZopFMGzfxFzF7_8_q8FBjANZ_TmRCCG4pmcmm-EOA016EraFZnOrsgOiLZx3j2Nb_9eQjJ_mcTJ1FQAGVVEIFsFCWPNWD4eyBXXA4-T3c-TeiZ5cWqL2pfMbog1PhL51q96YeyeXuS8mt4nYro7ahBBNUHw4s_rPPncFjzdY-ETKL7nn8_wRFSBzA1nPPiwu5G1aJXamJfJsNK1V3g3l46rApWyfl0m0pppWFfCRQAYYGLydYphd0djgVm6ljfbNBrZ-NKdKfzHxZhQ4MDo8s1bN6zVTyV5hxFHMmtK-MiyiQchG_q4Rvs0CxyrqecI5oKDCiJnharNeHJWgpRMQ04lJ8FCuT9YcdLs_cLL66PHsTOofRFOeeAvOAFWwnlLE290ejTJoe4kYDws" \
+ http://127.0.0.1:8080/hello
+
+Url for fly.io:
+DATABASE_URL=postgres://empty_brook_9488:gTVQRf0eJgybvBv@empty-brook-9488-db.flycast:5432/empty_brook_9488?sslmode=disable
+
+connect to db from tools:
+flyctl proxy 9432:5432 -a empty-brook-9488-db
+
+JAR run:
+java --enable-preview -jar target/playground21-0.0.1-SNAPSHOT.jar

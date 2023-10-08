@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: playground
+  datasource:
+    url: jdbc:postgresql://localhost:5432/playground
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate.hbm2ddl.auto: update
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
+server:
+  tomcat:
+    threads:
+      max: 10000
+    max-connections: 10000
+  servlet:
+    session:
+      cookie: # Only for social login state storage
+        name: LGST # Login state
+        secure: true
+        same-site: strict
+        http-only: true
+      timeout: 3M
+
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#spring.jmx.enabled: false
+#spring.devtools.livereload.enabled: false
+#management.endpoints.web.exposure.include: prometheus,health,info,metric
+
+app:
+  security:
+    refresh-token-duration: 30D
+    jwt:
+      private:
+        key: classpath:rsa.private.key
+      public:
+        key: classpath:rsa.public.key
+
+
+logging:
+  level:
+    default: INFO
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG

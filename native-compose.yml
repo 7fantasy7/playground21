@@ -1,0 +1,20 @@
+#build: always
+#On MacOS, enable Rosetta before running
+version: '3'
+services:
+  playground:
+    platform: linux/amd64
+    build:
+      context: .
+    container_name: playground
+    ports:
+      - "8080:8080"
+    network_mode: bridge
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 240M
+        reservations:
+          cpus: '0.5'
+          memory: 240M

@@ -1,0 +1,14 @@
+# fly.toml app configuration file generated for empty-brook-9488 on 2023-06-21T21:47:15+03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "empty-brook-9488"
+primary_region = "waw"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
